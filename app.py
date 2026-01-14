@@ -8,17 +8,17 @@ st.set_page_config(page_title="Farmasi Prodotti", layout="wide")
 # Colori Farmasi
 st.markdown("""
 <style>
-.stApp { background-color: #FFFFFF; }
-[data-testid="stMetricLabel"] { color: #1C2526; }
-[data-testid="stButton"] { background-color: #E91E63; color: white; }
-[data-testid="stTextInput"] { border-color: #E91E63; }
+    .stApp { background-color: #FFFFFF; }
+    [data-testid="stMetricLabel"] { color: #1C2526; font-weight: bold; }
+    .stButton > button { background-color: #E91E63; color: white; border: none; }
+    .stTextInput > div > div > input { border-color: #E91E63; }
 </style>
 """, unsafe_allow_html=True)
 
 st.title("Farmasi Prodotti 💄")
-st.markdown("App per cercare prodotti, applicare sconti e creare preventivi. Carica il tuo CSV per aggiornare il listino.")
+st.markdown("Cerca prodotti dal catalogo, applica sconti e crea preventivi personalizzati.")
 
-# Dati default dal PDF Catalogo-Italia-2024-25.pdf (estratti dalle pagine fornite)
+# Dati default dal Catalogo Italia 2024-25 (labbra principali + mascara da pagine estratte)
 default_data = {
     'Nome Prodotto': [
         'Matte Liquid Lipstick 01 Perfect Rose', 'Matte Liquid Lipstick 02 Au Natural', 'Matte Liquid Lipstick 03 Sunset Breeze',
@@ -45,87 +45,101 @@ default_data = {
         '1001504', '1001503', '1301322', '1301518', '1000025'
     ],
     'Prezzo Pubblico': [
-        18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00,
-        11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50,
-        9.50, 9.50, 9.50,
-        18.50, 18.50, 18.50, 18.50, 18.50,
-        19.50, 19.50, 19.50, 19.50, 19.50, 19.50,
-        30.00, 27.00, 12.50, 21.00, 21.50
-    ]
+        18.00]*12 + [11.50]*16 + [9.50]*3 + [18.50]*5 + [19.50]*6 + [30.00, 27.00, 12.50, 21.00, 21.50]
 }
 
-# Inizializza il listino solo se non esiste già
 if 'df_listino' not in st.session_state:
     df = pd.DataFrame(default_data)
     df['Prezzo Lov'] = round(df['Prezzo Pubblico'] / 1.15, 2)
     st.session_state.df_listino = df
 
 if 'preventivi' not in st.session_state:
-    st.session_state.preventivi = {}  # Dict nome_preventivo: df_preventivo
+    st.session_state.preventivi = {}
 
 # Sconto globale
 sconto_percent = st.number_input("Percentuale sconto rispetto prezzo ufficiale (%)", min_value=0.0, max_value=100.0, value=10.0, step=0.5)
 
-# Carica/Sovrascrivi listino
+# Gestione listino
 st.subheader("Gestione Listino")
-uploaded_file = st.file_uploader("Carica CSV per sovrascrivere listino (Nome Prodotto,Codice,Prezzo Pubblico)", type="csv")
+uploaded_file = st.file_uploader("Carica o sovrascrivi CSV (Nome Prodotto,Codice,Prezzo Pubblico)", type="csv")
 if uploaded_file:
     df_new = pd.read_csv(uploaded_file)
     df_new['Prezzo Lov'] = round(df_new['Prezzo Pubblico'] / 1.15, 2)
     st.session_state.df_listino = df_new
-    st.success("Listino sovrascritto con successo!")
+    st.success("Listino aggiornato!")
 
-st.dataframe(st.session_state.df_listino)
+st.dataframe(st.session_state.df_listino.style.format({'Prezzo Pubblico': '€{:.2f}', 'Prezzo Lov': '€{:.2f}'}))
 
 # Cerca prodotti
 st.subheader("Cerca Prodotti")
 search_query = st.text_input("Cerca per nome o codice")
 if search_query:
-    df_search = st.session_state.df_listino[st.session_state.df_listino['Nome Prodotto'].str.contains(search_query, case=False) | st.session_state.df_listino['Codice'].str.contains(search_query, case=False)]
+    df_search = st.session_state.df_listino[
+        st.session_state.df_listino['Nome Prodotto'].str.contains(search_query, case=False, na=False) |
+        st.session_state.df_listino['Codice'].astype(str).str.contains(search_query, case=False, na=False)
+    ].copy()
     df_search['Prezzo Scontato'] = round(df_search['Prezzo Pubblico'] * (1 - sconto_percent/100), 2)
-    st.dataframe(df_search)
+    st.dataframe(df_search.style.format({
+        'Prezzo Pubblico': '€{:.2f}', 'Prezzo Lov': '€{:.2f}', 'Prezzo Scontato': '€{:.2f}'
+    }))
 
-# Crea Preventivo
-st.subheader("Crea/Modifica Preventivo")
-nome_preventivo = st.text_input("Nome del preventivo (es. Cliente Marbella 01)")
-selected_products = st.multiselect("Seleziona prodotti", st.session_state.df_listino['Nome Prodotto'])
+# Crea/modifica preventivo
+st.subheader("Crea o Modifica Preventivo")
+nome_preventivo = st.text_input("Nome preventivo (es. Cliente Anna - 14/01/2026)")
+selected_products = st.multiselect("Seleziona prodotti", options=st.session_state.df_listino['Nome Prodotto'].tolist())
 
 if selected_products and nome_preventivo:
     df_prev = st.session_state.df_listino[st.session_state.df_listino['Nome Prodotto'].isin(selected_products)].copy()
-    df_prev['Quantità'] = 1  # Default quantità
-    for i, row in df_prev.iterrows():
-        qty = st.number_input(f"Quantità per {row['Nome Prodotto']}", min_value=1, value=1, key=f"qty_{i}")
-        df_prev.at[i, 'Quantità'] = qty
+    df_prev['Quantità'] = 1
+
+    for idx, row in df_prev.iterrows():
+        qty = st.number_input(f"Quantità per {row['Nome Prodotto']}", min_value=1, value=1, step=1, key=f"qty_{idx}")
+        df_prev.at[idx, 'Quantità'] = qty
+
     df_prev['Prezzo Scontato'] = round(df_prev['Prezzo Pubblico'] * (1 - sconto_percent/100) * df_prev['Quantità'], 2)
+
     tot_pub = (df_prev['Prezzo Pubblico'] * df_prev['Quantità']).sum()
     tot_scont = df_prev['Prezzo Scontato'].sum()
-    st.metric("Totale Pubblico", f"€{tot_pub:.2f}")
-    st.metric("Totale Scontato", f"€{tot_scont:.2f}")
+
+    st.metric("Totale Pubblico", f"€{tot_pub:,.2f}")
+    st.metric("Totale con Sconto", f"€{tot_scont:,.2f}")
+
     if st.button("Salva Preventivo"):
         st.session_state.preventivi[nome_preventivo] = df_prev
         st.success(f"Preventivo '{nome_preventivo}' salvato!")
 
-# I miei Preventivi
+# I miei preventivi
 st.subheader("I Miei Preventivi")
 if st.session_state.preventivi:
-    selected_prev = st.selectbox("Seleziona preventivo da richiamare/modificare", list(st.session_state.preventivi.keys()))
+    prev_names = list(st.session_state.preventivi.keys())
+    selected_prev = st.selectbox("Richiama preventivo", prev_names)
+
     if selected_prev:
         df_load = st.session_state.preventivi[selected_prev]
-        st.dataframe(df_load)
-        if st.button("Modifica e Risalva"):
-            # Logica modifica simile a creazione
-            st.info("Modifica sopra e salva con lo stesso nome per sovrascrivere.")
-        output = BytesIO()
-        df_load.to_excel(output, index=False)
-        output.seek(0)
-        st.download_button("Scarica Preventivo Excel", output, file_name=f"{selected_prev}.xlsx")
+        st.dataframe(df_load.style.format({
+            'Prezzo Pubblico': '€{:.2f}', 'Prezzo Lov': '€{:.2f}', 'Prezzo Scontato': '€{:.2f}'
+        }))
 
-# Esporta/Importa preventivi per persistenza
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df_load.to_excel(writer, index=False, sheet_name='Preventivo')
+        output.seek(0)
+
+        st.download_button(
+            label="Scarica Preventivo Excel",
+            data=output,
+            file_name=f"{selected_prev}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+# Backup/restore preventivi
 st.subheader("Backup Preventivi")
-preventivi_json = json.dumps({k: v.to_dict() for k, v in st.session_state.preventivi.items()}, default=str)
-st.download_button("Scarica tutti preventivi (JSON)", preventivi_json, file_name="preventivi.json")
-uploaded_json = st.file_uploader("Carica backup preventivi (JSON)", type="json")
-if uploaded_json:
-    loaded = json.load(uploaded_json)
+if st.button("Scarica backup JSON"):
+    preventivi_json = json.dumps({k: v.to_dict(orient='records') for k, v in st.session_state.preventivi.items()}, default=str)
+    st.download_button("Download JSON", preventivi_json, file_name="preventivi_backup.json")
+
+uploaded_backup = st.file_uploader("Carica backup JSON", type="json")
+if uploaded_backup:
+    loaded = json.load(uploaded_backup)
     st.session_state.preventivi = {k: pd.DataFrame(v) for k, v in loaded.items()}
-    st.success("Preventivi caricati!")
+    st.success("Backup caricato!")
