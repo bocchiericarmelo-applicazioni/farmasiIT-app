@@ -18,27 +18,47 @@ st.markdown("""
 st.title("Farmasi Prodotti 💄")
 st.markdown("App per cercare prodotti, applicare sconti e creare preventivi. Carica il tuo CSV per aggiornare il listino.")
 
-# Dati default dal PDF (estratti da pagine 6-15)
+# Dati default dal PDF Catalogo-Italia-2024-25.pdf (estratti dalle pagine fornite)
 default_data = {
     'Nome Prodotto': [
-        'Matte Liquid Lipstick - 01 Country Rose', 'Matte Liquid Lipstick - 02 Raisin', 'Matte Liquid Lipstick - 03 Bittersweet', 'Matte Liquid Lipstick - 04 Plush Blush', 'Matte Liquid Lipstick - 05 Rosewood', 'Matte Liquid Lipstick - 06 Hot Cherry', 'Matte Liquid Lipstick - 07 Nude Pink', 'Matte Liquid Lipstick - 08 Spice', 'Matte Liquid Lipstick - 09 Cheerful', 'Matte Liquid Lipstick - 10 Iconic Nude', 'Matte Liquid Lipstick - 11 Birthday Chic', 'Matte Liquid Lipstick - 12 Paradise Pink', 'Matte Liquid Lipstick - 13 Ruby', 'Matte Liquid Lipstick - 14 Scarlet', 'Matte Liquid Lipstick - 15 Hot Tahiti', 'Matte Liquid Lipstick - 16 Barely Nude',
-        'Lip Liner - Cool Mauve', 'Lip Liner - Deep Red', 'Lip Liner - Nude Pink',
-        'Tinted Lip Plumper - 01 Fiery', 'Tinted Lip Plumper - 02 Flirt', 'Tinted Lip Plumper - 03 Lover', 'Tinted Lip Plumper - 05 Merry Berry', 'Tinted Lip Plumper - 00 Glass',
-        'Ultimate Shine Lip Gloss - Golden Topaz', 'Ultimate Shine Lip Gloss - Pink Tourmaline', 'Ultimate Shine Lip Gloss - Shiny Copper', 'Ultimate Shine Lip Gloss - Crystal Sparkle', 'Ultimate Shine Lip Gloss - Lithium Quartz', 'Ultimate Shine Lip Gloss - Satin Pink',
-        # Aggiungi altri se estratti da altre pagine
+        'Matte Liquid Lipstick 01 Perfect Rose', 'Matte Liquid Lipstick 02 Au Natural', 'Matte Liquid Lipstick 03 Sunset Breeze',
+        'Matte Liquid Lipstick 04 Retro Rose', 'Matte Liquid Lipstick 05 Super Star', 'Matte Liquid Lipstick 06 Red Love',
+        'Matte Liquid Lipstick 07 Money Maker', 'Matte Liquid Lipstick 08 Rose Dream', 'Matte Liquid Lipstick 09 Wild Rose',
+        'Matte Liquid Lipstick 10 Nude Essence', 'Matte Liquid Lipstick 11 Mauve Pink', 'Matte Liquid Lipstick 14 Brave',
+        'Creamy Lipstick 01 Country Rose', 'Creamy Lipstick 02 Raisin', 'Creamy Lipstick 03 Bittersweet', 'Creamy Lipstick 04 Plush Blush',
+        'Creamy Lipstick 05 Rosewood', 'Creamy Lipstick 06 Hot Cherry', 'Creamy Lipstick 07 Nude Pink', 'Creamy Lipstick 08 Spice',
+        'Creamy Lipstick 09 Cheerful', 'Creamy Lipstick 10 Iconic Nude', 'Creamy Lipstick 11 Birthday Chic', 'Creamy Lipstick 12 Paradise Pink',
+        'Creamy Lipstick 13 Ruby', 'Creamy Lipstick 14 Scarlet', 'Creamy Lipstick 15 Hot Tahiti', 'Creamy Lipstick 16 Barely Nude',
+        'Lip Liner Cool Mauve', 'Lip Liner Deep Red', 'Lip Liner Nude Pink',
+        'Tinted Lip Plumper 01 Fiery', 'Tinted Lip Plumper 02 Flirt', 'Tinted Lip Plumper 03 Lover',
+        'Tinted Lip Plumper 05 Merry Berry', 'Tinted Lip Plumper 00 Glass',
+        'Ultimate Shine Lip Gloss Golden Topaz', 'Ultimate Shine Lip Gloss Pink Tourmaline', 'Ultimate Shine Lip Gloss Shiny Copper',
+        'Ultimate Shine Lip Gloss Crystal Sparkle', 'Ultimate Shine Lip Gloss Lithium Quartz', 'Ultimate Shine Lip Gloss Satin Pink',
+        'Full Blast Mascara', 'Infinilash Mascara', 'Zen Mascara', 'Double Lash Extend Mascara', 'Ink Liner Black'
     ],
     'Codice': [
-        '1001387', '1001388', '1001389', '1001390', '1001391', '1001392', '1001393', '1001394', '1001395', '1001396', '1001397', '1001398', '1001399', '1001400', '1001401', '1001402',
-        '1001461', '1001462', '1001464',
+        '1001409', '1001410', '1001411', '1001412', '1001413', '1001414', '1001415', '1001416', '1001417', '1001418', '1001419', '1001422',
+        '1001387', '1001388', '1001389', '1001390', '1001391', '1001392', '1001393', '1001394', '1001395', '1001396', '1001397', '1001398',
+        '1001399', '1001400', '1001401', '1001402', '1001461', '1001462', '1001464',
         '1001497', '1001498', '1001499', '1001501', '1001521',
-        '1001403', '1001406', '1001404', '1001405', '1001407', '1001408', # Codici plausibili per gloss
+        '1001403', '1001406', '1001404', '1001405', '1001407', '1001408',
+        '1001504', '1001503', '1301322', '1301518', '1000025'
     ],
-    'Prezzo Pubblico': [11.50] * 16 + [9.50] * 3 + [18.50] * 5 + [19.50] * 6,
+    'Prezzo Pubblico': [
+        18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00, 18.00,
+        11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50, 11.50,
+        9.50, 9.50, 9.50,
+        18.50, 18.50, 18.50, 18.50, 18.50,
+        19.50, 19.50, 19.50, 19.50, 19.50, 19.50,
+        30.00, 27.00, 12.50, 21.00, 21.50
+    ]
 }
 
+# Inizializza il listino solo se non esiste già
 if 'df_listino' not in st.session_state:
-    st.session_state.df_listino = pd.DataFrame(data)
-    st.session_state.df_listino['Prezzo Lov'] = round(st.session_state.df_listino['Prezzo Pubblico'] / 1.15, 2)
+    df = pd.DataFrame(default_data)
+    df['Prezzo Lov'] = round(df['Prezzo Pubblico'] / 1.15, 2)
+    st.session_state.df_listino = df
 
 if 'preventivi' not in st.session_state:
     st.session_state.preventivi = {}  # Dict nome_preventivo: df_preventivo
@@ -77,7 +97,7 @@ if selected_products and nome_preventivo:
         qty = st.number_input(f"Quantità per {row['Nome Prodotto']}", min_value=1, value=1, key=f"qty_{i}")
         df_prev.at[i, 'Quantità'] = qty
     df_prev['Prezzo Scontato'] = round(df_prev['Prezzo Pubblico'] * (1 - sconto_percent/100) * df_prev['Quantità'], 2)
-    tot_pub = df_prev['Prezzo Pubblico'].sum()
+    tot_pub = (df_prev['Prezzo Pubblico'] * df_prev['Quantità']).sum()
     tot_scont = df_prev['Prezzo Scontato'].sum()
     st.metric("Totale Pubblico", f"€{tot_pub:.2f}")
     st.metric("Totale Scontato", f"€{tot_scont:.2f}")
@@ -100,7 +120,7 @@ if st.session_state.preventivi:
         output.seek(0)
         st.download_button("Scarica Preventivo Excel", output, file_name=f"{selected_prev}.xlsx")
 
-# Upload/Download preventivi per persistenza
+# Esporta/Importa preventivi per persistenza
 st.subheader("Backup Preventivi")
 preventivi_json = json.dumps({k: v.to_dict() for k, v in st.session_state.preventivi.items()}, default=str)
 st.download_button("Scarica tutti preventivi (JSON)", preventivi_json, file_name="preventivi.json")
