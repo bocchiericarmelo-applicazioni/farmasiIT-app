@@ -1,0 +1,186 @@
+Ecco l'elenco completo dei prodotti estratti dalle fonti, organizzati nel formato **CSV** richiesto per l'esportazione. I dati includono il nome del prodotto, il codice identificativo e il prezzo al pubblico espresso in Euro.
+
+```csv
+Nome Prodotto,Codice,Prezzo Pubblico
+Matte Liquid Lipstick 01 Perfect Rose,1001409,18.00
+Matte Liquid Lipstick 02 Au Natural,1001410,18.00
+Matte Liquid Lipstick 03 Sunset Breeze,1001411,18.00
+Matte Liquid Lipstick 04 Retro Rose,1001412,18.00
+Matte Liquid Lipstick 05 Super Star,1001413,18.00
+Matte Liquid Lipstick 06 Red Love,1001414,18.00
+Matte Liquid Lipstick 07 Money Maker,1001415,18.00
+Matte Liquid Lipstick 08 Rose Dream,1001416,18.00
+Matte Liquid Lipstick 09 Wild Rose,1001417,18.00
+Matte Liquid Lipstick 10 Nude Essence,1001418,18.00
+Matte Liquid Lipstick 11 Mauve Pink,1001419,18.00
+Matte Liquid Lipstick 14 Brave,1001422,18.00
+Creamy Lipstick 01 Country Rose,1001387,11.50
+Creamy Lipstick 02 Raisin,1001388,11.50
+Creamy Lipstick 03 Bittersweet,1001389,11.50
+Creamy Lipstick 04 Plush Blush,1001390,11.50
+Creamy Lipstick 05 Rosewood,1001391,11.50
+Creamy Lipstick 06 Hot Cherry,1001392,11.50
+Creamy Lipstick 07 Nude Pink,1001393,11.50
+Creamy Lipstick 08 Spice,1001394,11.50
+Creamy Lipstick 09 Cheerful,1001395,11.50
+Creamy Lipstick 10 Iconic Nude,1001396,11.50
+Creamy Lipstick 11 Birthday Chic,1001397,11.50
+Creamy Lipstick 12 Paradise Pink,1001398,11.50
+Creamy Lipstick 13 Ruby,1001399,11.50
+Creamy Lipstick 14 Scarlet,1001400,11.50
+Creamy Lipstick 15 Hot Tahiti,1001401,11.50
+Creamy Lipstick 16 Barely Nude,1001402,11.50
+Lip Liner Nude Pink,1001464,9.50
+Lip Liner Cool Mauve,1001461,9.50
+Lip Liner Deep Red,1001462,9.50
+Tinted Lip Plumper 01 Fiery,1001497,18.50
+Tinted Lip Plumper 02 Flirt,1001498,18.50
+Tinted Lip Plumper 03 Lover,1001499,18.50
+Tinted Lip Plumper 05 Merry Berry,1001501,18.50
+Tinted Lip Plumper 00 Glass,1001521,18.50
+Ultimate Shine Lip Gloss Crystal Sparkle,1001405,19.50
+Ultimate Shine Lip Gloss Shiny Copper,1001404,19.50
+Ultimate Shine Lip Gloss Golden Topaz,1001403,19.50
+Ultimate Shine Lip Gloss Satin Pink,1001408,19.50
+Ultimate Shine Lip Gloss Lithium Quartz,1001407,19.50
+Ultimate Shine Lip Gloss Pink Tourmaline,1001406,19.50
+Full Blast Mascara,1001504,30.00
+Infinilash Mascara,1001503,27.00
+Double Lash Extend Mascara,1301518,21.00
+Ink Liner Black,1000025,21.50
+Eye Liner Pencil 01 Black,1001451,12.00
+Eye Liner Pencil 02 Deep Brown,1001452,12.00
+Eye Liner Pencil 07 Dark Blue,1001457,12.00
+Eye Liner Pencil 09 Burgundy,1001459,12.00
+Eye Liner Pencil 10 Glitz Grey,1001460,12.00
+Palette Oasis Desert Sand,1001547,32.00
+Palette Oasis Rose Dune,1001548,32.00
+Precision Eyebrow Pen Soft Brown,1001006,13.00
+Precision Eyebrow Pen Medium Brown,1001007,13.00
+Precision Eyebrow Pen Deep Brown,1001008,13.00
+Brow Setting Wax,1000930,26.00
+Eyebrow & Lash Capixyl Serum,1301292,28.50
+Microfilling Brow Pen Blonde,1001028,19.00
+Microfilling Brow Pen Light Brown,1001029,19.00
+Microfilling Brow Pen Medium Brown,1001030,19.00
+Microfilling Brow Pen Deep Brown,1001031,19.00
+Makeup Blending Sponge,9000942,9.50
+Blush Powder Brush,9000935,15.00
+Foundation Brush,9000934,15.00
+Highlighter Brush,9000933,15.00
+Concealer Brush,9000936,11.00
+Cut End Eye-crease Brush,9000937,8.00
+Shader Brush,9000938,8.00
+Blending Brush,9000939,11.00
+Flat Definer Brush,9000941,8.00
+Eyeliner Brush,9000940,8.00
+VFX Pro Illuminating Primer,1001517,19.50
+VFX Pro Blur Primer,1001516,19.50
+VFX Pro Foundation (Tutti i toni),1002024,29.50
+VFX Pro Liquid Concealer (Tutti i toni),1001375,14.50
+BB Cream (Tutti i toni),1001485,13.00
+CC Cream (Tutti i toni),1001491,14.00
+BB Powder (Tutti i toni),1001346,26.00
+Stick Contour Wink,1001709,20.00
+Stick Contour Smize,1001710,20.00
+Stick Blush Fresh,1001708,20.00
+Stick Blush Joy,1001705,20.00
+Stick Blush Play,1001706,20.00
+Stick Blush Flirt,1001707,20.00
+Face Sculpting Palette,1001438,30.00
+Face Palette Peach Bite,1001437,30.00
+Face Palette 3 in 1,1001439,30.00
+Powder Blusher 01 Like Candy,1001433,16.00
+Powder Blusher 02 Goddess Glow,1001434,16.00
+Powder Blusher 03 Cool Queen,1001435,16.00
+Powder Blusher 04 Pink Lily,1001436,16.00
+VFX Pro Fixing Spray,1001519,11.00
+Sensi-Wipes Makeup Remover,1201006,5.00
+Hera EDP per donna,1107491,33.00
+Her Passion EDP per donna,1000490,40.00
+Bliss EDP per donna,1107541,33.00
+Baoli EDP per uomo,1107522,36.00
+Shooter’s Man EDP per uomo,1000674,36.00
+His Power EDP per uomo,1000489,45.00
+Masculine Massage Oil,1001874,18.00
+Masculine Shampoo & Body Wash,1001832,10.00
+Masculine Hand Wash For Men,1001830,10.00
+Masculine After Shave Balm,1001835,8.00
+Masculine Roll On For Men,1001833,8.00
+Masculine Edp For Men,1001834,35.00
+Saponetta Olio di Tea Tree,1000330,7.00
+Saponetta alla Calendula,1000329,7.00
+Whitening Dentifricio,1000390,14.00
+Resurface Detergente Viso Esfoliante,1000277,29.00
+Resurface Tonico Viso Lenitivo,1000278,32.00
+Resurface Crema Contorno Occhi,1000282,29.00
+Resurface Crema Viso Giorno SPF 30,1000280,50.00
+Resurface Siero Rivitalizzante,1000279,54.00
+Resurface Crema Viso Notte,1000551,50.00
+Age Reversist Detergente Esfoliante,1000276,25.00
+Age Reversist Tonico Anti-età,1000270,25.00
+Age Reversist Crema Contorno Occhi,1000273,21.00
+Age Reversist Siero Viso Anti-età,1000272,46.00
+Age Reversist Crema Viso Idratante,1000271,29.00
+Age Reversist Maschera Viso Notte,1000269,46.00
+Age Reversist Crema Perfezionatrice,1000275,43.00
+Lumi Radiance Tonico Viso,1000295,14.00
+Lumi Radiance Gel Detergente,1000300,14.00
+Lumi Radiance Crema Contorno Occhi,1000299,14.00
+Lumi Radiance Siero Viso Illuminante,1000298,29.00
+Lumi Radiance Crema Viso Illuminante,1000297,25.00
+Calendula Tonico Viso,1000284,11.00
+Calendula Detergente Viso,1000283,11.00
+Calendula Olio Viso,1000287,25.00
+Calendula Balsamo Viso in Crema,1000286,18.00
+Calendula Crema Viso,1000285,14.00
+Aqua Gel Viso Detergente,1000265,14.00
+Aqua Crema Contorno Occhi,1000268,14.00
+Aqua Gocce Idratanti Stimolanti,1000266,29.00
+Aqua Crema Viso Idratante,1000267,32.00
+Tea Tree Tonico Viso,1000289,11.00
+Tea Tree Detergente Viso,1000288,11.00
+Tea Tree Crema Viso,1000290,14.00
+Tea Tree Siero Viso,1000292,14.00
+Tea Tree Balsamo Viso in Crema,1000291,18.00
+Absolute Super Elixir,1000991,54.00
+Reviving Olio all’Aglio,1000311,21.00
+Reviving Maschera Capillare,1000310,18.00
+Reviving Shampoo,1000309,14.00
+Intensive Repair Shampoo,1000885,14.00
+Intensive Repair Maschera,1000886,18.00
+Intensive Repair Balsamo Leave-in,1000887,21.00
+Styling Spray Nutritivo,9000685,16.00
+Styling Shampoo Secco,9000462,18.00
+Styling Mousse Termico,9000686,16.00
+Gel Massaggio Paprika e Peperoncino,1000305,11.00
+Gel Massaggio Ippocastano,1000304,11.00
+Nutrishake Cioccolato,1001627,49.90
+Nutrishake Vaniglia,1001885,49.90
+Nutrishake Banana,1001886,49.90
+Nutrishake Fragola,1001626,49.90
+Lily Shaker,9000689,10.50
+Beauty Collagen Shot,1002122,55.00
+Beauty Booster Collagen Cioccolato,1002126,55.00
+Beauty Collagen Compresse,1002125,25.00
+Vitamina D3 Spray,1002129,30.00
+Vitamina B12 Spray,1002128,25.00
+Vitamin C Plus Effervescente,1002130,25.00
+Sambucus Nigra Vit C & Zinco,1002118,20.00
+Aloe Glow Mango,1002123,30.00
+Turmeric Curcuma,1002124,25.00
+Calcium & Magnesium & Collagen,1002121,20.00
+Hydro Drops,1002120,25.00
+Omega-3 Fish Oil,1002127,40.00
+Spirulina,1002117,30.00
+L-Carnitine Shot,1002119,35.00
+Caffè Miscela di Fibra,9000851,22.00
+Caffè Miscela di Cicoria,9000850,22.00
+Caffè Cicoria e Collagene,9000852,30.00
+Serenity Tè Nero,1000809,20.00
+Serenity Tè Limone,1000763,20.00
+Serenity Tè Pesca,1000762,20.00
+Serenity Tè Lampone,1000764,20.00
+```
+
+I prezzi indicati riflettono i valori standard presenti nei listini delle linee trucco, Dr. C. Tuna e Nutriplus inclusi nelle fonti.
